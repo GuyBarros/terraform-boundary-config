@@ -22,6 +22,3 @@ boundary connect -target-id=${boundary_target.vault.id}
 boundary connect -target-id=${boundary_target.nomad.id}
 # SSH
 boundary connect ssh -target-id=${boundary_target.backend_servers_ssh.id} -username ubuntu
-
-SHELLCOMMANDS
-}
