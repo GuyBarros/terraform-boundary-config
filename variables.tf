@@ -1,4 +1,4 @@
-variable "addr" {
+variable "boundary_address" {
   description = "Boundary Host"
   default     = ""
 }
@@ -18,26 +18,6 @@ variable "password" {
   default     = ""
 }
 
-variable "users" {
-  type = set(string)
-  default = [
-    "Jim",
-    "Mike",
-    "Todd",
-    "Jeff",
-    "Randy",
-    "Susmitha"
-  ]
-}
-
-variable "readonly_users" {
-  type = set(string)
-  default = [
-    "Chris",
-    "Pete",
-    "Justin"
-  ]
-}
 
 variable "backend_server_ips" {
   type = set(string)
@@ -46,19 +26,6 @@ variable "backend_server_ips" {
     "server-1.eu-guystack.original.aws.hashidemos.io",
     "server-2.eu-guystack.original.aws.hashidemos.io",
   ]
-}
-# Vault
-variable "vault_addr" {
-  description = "Vault Address to be used for the Credential library"
-  default     = "https://vault.guystack1.original.aws.hashidemos.io:8200"
-}
-
-variable "vault_token" {
-  description = "Token to access vault for Cred Library"
-}
-
-variable "vault_namespace" {
-  description = "Namespace for the Cred library"
 }
 
 # Vault Dynamic DB Cred
@@ -85,4 +52,40 @@ variable "sshca_public_key"{
 
 variable "sshca_hostname"{
   description = "the FQDN for the SSH CA target"
+}
+variable "windows_hostname" {
+  description = "the hostname of the windows VM we will VM into"
+}
+variable "windows_port" {
+  description = "the port of the windows VM we will RDP into"
+}
+
+################ Vault
+variable "application_name" {
+     type        = string
+     description = "the application identifier which will create github repo, terraform workspace, vault namespace"
+}
+
+ variable "vault_namespace" {
+  description = "the HCP Vault namespace we will use for mounting the database secret engine"
+  default = "admin"
+}
+
+ variable "vault_address" {
+  description = "the Vault Address"
+}
+
+ variable "vault_token" {
+  description = "the Vault Address"
+  sensitive = true
+}
+
+ variable "windows_username" {
+  description = "the HCP Vault namespace we will use for mounting the database secret engine"
+  default = "Administrator"
+}
+
+ variable "windows_password" {
+  description = "the HCP Vault namespace we will use for mounting the database secret engine"
+  default = "hunter2"
 }
