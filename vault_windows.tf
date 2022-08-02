@@ -6,8 +6,15 @@ resource "vault_mount" "boundary_creds" {
   description = "KV Version 2 secret engine mount"
 }
 
+
+resource "time_sleep" "wait_5_seconds" {
+  depends_on = [vault_mount.boundary_creds]
+
+  create_duration = "5s"
+}
+
 resource "vault_kv_secret_v2" "windows" {
-    depends_on = [vault_mount.boundary_creds]
+    depends_on = [time_sleep.wait_5_seconds]
     provider = vault.app
   mount                      = vault_mount.boundary_creds.path
   name                       = "windows"
@@ -21,8 +28,9 @@ resource "vault_kv_secret_v2" "windows" {
   )
 }
 
+
 resource "vault_kv_secret_v2" "ssh" {
-    depends_on = [vault_mount.boundary_creds]
+    depends_on = [time_sleep.wait_5_seconds]
     provider = vault.app
   mount                      = vault_mount.boundary_creds.path
   name                       = "ssh"

@@ -6,6 +6,7 @@ provider "vault" {
   token   = var.vault_token
 }
 
+
 provider "vault" {
   alias     = "app"
   address = var.vault_address
