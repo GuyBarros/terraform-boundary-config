@@ -46,9 +46,6 @@ variable "postgres_username" {
 variable "postgres_password" {
   description = "the password for admin username of the MySQL Database we will configure in Vault(this will be rotated after config)"
 }
-variable "sshca_public_key"{
- description = "the public key that will be signed by the SSH CA Secret Engine"
-}
 
 variable "sshca_hostname"{
   description = "the FQDN for the SSH CA target"

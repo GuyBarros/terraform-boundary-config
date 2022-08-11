@@ -27,3 +27,15 @@ boundary connect ssh -target-id=${boundary_target.backend_servers_ssh.id} -usern
 
 EOF
 }
+
+output "found_ec2_instances" {
+   value = flatten(data.aws_instances.servers.*.private_ips)
+   }
+
+   output "found_windows_instances" {
+   value = data.aws_instance.windows.private_ip
+   }
+
+    output "found_windows_instance_password" {
+   value = rsadecrypt(data.aws_instance.windows.password_data, file("/Users/guybarros/.ssh/id_rsa"))
+   }

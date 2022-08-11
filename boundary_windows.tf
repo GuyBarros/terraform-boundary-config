@@ -20,7 +20,7 @@ resource "boundary_host" "windows_host" {
   type            = "static"
   name            = "windows_server"
   description     = "windows server host"
-  address         = var.windows_hostname
+  address         = data.aws_instance.windows.private_ip
   host_catalog_id = boundary_host_catalog.windows_catalog.id
 }
 

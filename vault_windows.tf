@@ -23,7 +23,7 @@ resource "vault_kv_secret_v2" "windows" {
   data_json                  = jsonencode(
   {
     Username       = "${var.windows_username}",
-    Password       = "${var.windows_password}"
+    Password       = rsadecrypt(data.aws_instance.windows.password_data, file("/Users/guybarros/.ssh/id_rsa"))
   }
   )
 }
@@ -38,8 +38,9 @@ resource "vault_kv_secret_v2" "ssh" {
   delete_all_versions        = true
   data_json                  = jsonencode(
   {
-    Username       = "ubuntu",
-    Public_key       = "${var.sshca_public_key}"
+    username       = "ubuntu",
+    public_key       = file("/Users/guybarros/.ssh/id_rsa.pub")
+    private_key      = file("/Users/guybarros/.ssh/id_rsa")
   }
   )
 }
