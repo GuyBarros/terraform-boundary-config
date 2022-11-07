@@ -19,15 +19,6 @@ variable "password" {
 }
 
 
-variable "backend_server_ips" {
-  type = set(string)
-  default = [
-    "server-0.eu-guystack.original.aws.hashidemos.io",
-    "server-1.eu-guystack.original.aws.hashidemos.io",
-    "server-2.eu-guystack.original.aws.hashidemos.io",
-  ]
-}
-
 # Vault Dynamic DB Cred
 
 //PostgresSQL
@@ -50,9 +41,7 @@ variable "postgres_password" {
 variable "sshca_hostname"{
   description = "the FQDN for the SSH CA target"
 }
-variable "windows_hostname" {
-  description = "the hostname of the windows VM we will VM into"
-}
+
 variable "windows_port" {
   description = "the port of the windows VM we will RDP into"
 }
@@ -80,9 +69,4 @@ variable "application_name" {
  variable "windows_username" {
   description = "the HCP Vault namespace we will use for mounting the database secret engine"
   default = "Administrator"
-}
-
- variable "windows_password" {
-  description = "the HCP Vault namespace we will use for mounting the database secret engine"
-  default = "hunter2"
 }

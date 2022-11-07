@@ -96,7 +96,7 @@ resource "boundary_target" "backend_servers_ssh" {
   host_source_ids = [
     boundary_host_set.backend_servers_ssh.id
   ]
-   application_credential_source_ids  = [
+   brokered_credential_source_ids   = [
     boundary_credential_library_vault.ssh.id
   ]
 }
@@ -104,10 +104,11 @@ resource "boundary_target" "backend_servers_ssh" {
 resource "boundary_credential_store_vault" "app_vault" {
   name        = "app_Vault"
   description = "app Vault Credential Store"
-  address     = "https://vault.service.consul:8200"
+  # address     = "https://vault.service.consul:8200"
+address         = var.vault_address
   token       = vault_token.boundary.client_token
   # token       = var.vault_token
-  namespace   = var.application_name
+  namespace   = "admin/${var.application_name}"
   scope_id    = boundary_scope.app_infra.id
 }
 

@@ -44,7 +44,7 @@ resource "boundary_target" "windows" {
     boundary_host_set.windows_set.id
   ]
 
-   application_credential_source_ids  = [
+   brokered_credential_source_ids   = [
     boundary_credential_library_vault.windows.id
   ]
 }

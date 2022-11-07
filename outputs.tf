@@ -20,8 +20,7 @@ boundary connect -target-id=${boundary_target.consul.id}
 boundary connect -target-id=${boundary_target.vault.id}
 # Nomad
 boundary connect -target-id=${boundary_target.nomad.id}
-#Postgres
-boundary connect postgres -target-id=${boundary_target.postgres.id} -dbname boundary
+
 # SSH
 boundary connect ssh -target-id=${boundary_target.backend_servers_ssh.id} -username ubuntu
 
