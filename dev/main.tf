@@ -11,8 +11,8 @@ variable "config_vault_token" {}
 //--------------------------------------------------------------------
 // Modules
 module "config" {
-  source  = "app.terraform.io/emea-se-playground-2019/config/boundary"
-
+#  source  = "app.terraform.io/emea-se-playground-2019/config/boundary"
+ source = "github.com/GuyBarros/terraform-boundary-config"
 
   application_name = "guystack"
   auth_method_id = "${var.config_auth_method_id}"
