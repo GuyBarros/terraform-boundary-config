@@ -14,10 +14,6 @@ output "vault_target" {
  value = boundary_target.vault.id
 }
 
-output "vault_target" {
- value = boundary_target.vault.id
-}
-
 output "nomad_target" {
  value = boundary_target.nomad.id
 }
