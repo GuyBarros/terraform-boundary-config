@@ -39,7 +39,7 @@ resource "boundary_target" "windows" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = var.windows_port
   session_connection_limit = -1
-  worker_filter = "demostack in /tags/type"
+   worker_filter = " demostack in /tags/type "
 
   host_source_ids = [
     boundary_host_set.windows_set.id

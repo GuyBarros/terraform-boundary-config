@@ -11,18 +11,18 @@ ooooo   ooooo                    oooo         o8o    .oooooo.
 o888o   o888o `Y888""8o 8""888P' o888o o888o o888o  `Y8bood8P'  `Y8bod8P' d888b     888bod8P'
                                                                                     888
                                                                                    o888o
-export BOUNDARY_ADDR=${module.config.output.boundary_address}
+export BOUNDARY_ADDR=${module.config.boundary_address}
 
-${module.config.output.boundary_auth_string}
+${module.config.boundary_auth_string}
 # Consul
-boundary connect -target-id=${module.config.output.consul}
+boundary connect -target-id=${module.config.consul_target}
 # Vault
-boundary connect -target-id=${module.config.output.vault}
+boundary connect -target-id=${module.config.vault_target}
 # Nomad
-boundary connect -target-id=${module.config.output.nomad}
+boundary connect -target-id=${module.config.nomad_target}
 
 # SSH
-boundary connect ssh -target-id=${module.config.output.ssh} -username ubuntu
+boundary connect ssh -target-id=${module.config.ssh_target} -username ubuntu
 
 EOF
 }

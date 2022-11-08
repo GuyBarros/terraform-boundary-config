@@ -6,7 +6,7 @@ resource "boundary_target" "gen_test" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "8500"
   session_connection_limit = -1
-  worker_filter = "demostack in /tags/type"
+   worker_filter = " demostack in /tags/type "
 
   host_source_ids = [
     boundary_host_set.backend_servers_ssh.id
