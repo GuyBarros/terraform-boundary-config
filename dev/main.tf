@@ -15,18 +15,14 @@ module "config" {
  source = "github.com/GuyBarros/terraform-boundary-config"
 
   application_name = "guystack"
-  auth_method_id = "${var.config_auth_method_id}"
-  boundary_address = "${var.config_boundary_address}"
-  password = "${var.config_password}"
-  postgres_hostname = "boundary-postgres.service.consul"
-  postgres_name = "boundary"
+  auth_method_id = var.config_auth_method_id
+  boundary_address = var.config_boundary_address
+  password = var.config_password
   postgres_password = "rootpassword"
-  postgres_port = 5432
-  postgres_username = "root"
   sshca_hostname = "workers-0.guystack.original.aws.hashidemos.io"
-  username = "${var.config_username}"
-  vault_address = "${var.config_vault_address}"
-  vault_namespace = "${var.config_vault_namespace}"
-  vault_token = "${var.config_vault_token}"
+  username = var.config_username
+  vault_address = var.config_vault_address
+  vault_namespace = var.config_vault_namespace
+  vault_token = var.config_vault_token
   windows_port = 3389
 }

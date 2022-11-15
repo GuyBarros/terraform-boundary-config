@@ -4,17 +4,16 @@ username       = "admin"
 password       = "Welcome1"
 
 vault_address    = "https://guystack-vault-public-vault-d141f84e.f671c78f.z1.hashicorp.cloud:8200"
-vault_token   = "hvs.CAESILClXkPveR12pC3KRVb2tIMsjkf8vZYH6-KZrfiQuCv-GicKImh2cy5pcGtMeXNpTzFPODJZVGd1RTVITHAxU3QuWlBBU3QQiwY"
+vault_token   = "hvs.CAESIOs1DPP0DUnp8GrDEQed51r8c8BCWCpA0HND7kyHiCTOGicKImh2cy54eTdSUE0ycW9aSmRwS2tOTUc3aFJPckkucEthdkcQg1M"
 vault_namespace = "boundary"
 
-#"postgresql://root:rootpassword@boundary-postgres.service.consul:5432/boundary?sslmode=disable"
-postgres_hostname = "boundary-postgres.service.consul"
-postgres_port = 5432
-postgres_name = "boundary"
-postgres_username ="root"
-postgres_password ="rootpassword"
+postgres_password ="YourPwdShouldBeLongAndSecure!"
 
 sshca_hostname = "workers-0.guystack.original.aws.hashidemos.io"
 
 application_name = "guystack"
 windows_port = 3389
+
+#export VAULT_ADDR=https://guystack-vault-public-vault-d141f84e.f671c78f.z1.hashicorp.cloud:8200
+#export VAULT_TOKEN=hvs.CAESIOs1DPP0DUnp8GrDEQed51r8c8BCWCpA0HND7kyHiCTOGicKImh2cy54eTdSUE0ycW9aSmRwS2tOTUc3aFJPckkucEthdkcQg1M
+#export VAULT_NAMESPACE=admin

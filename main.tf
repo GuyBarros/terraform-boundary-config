@@ -27,7 +27,7 @@ resource "boundary_host_catalog_static" "backend_servers" {
   scope_id    = boundary_scope.app_infra.id
 }
 
-resource "boundary_host" "backend_servers" {
+resource "boundary_host_static" "backend_servers" {
   for_each        = toset(data.aws_instances.servers.private_ips)
   type            = "static"
   name            = "backend_server_service_${each.value}"
@@ -36,12 +36,12 @@ resource "boundary_host" "backend_servers" {
   host_catalog_id = boundary_host_catalog_static.backend_servers.id
 }
 
-resource "boundary_host_set" "backend_servers_ssh" {
+resource "boundary_host_set_static" "backend_servers_ssh" {
   type            = "static"
   name            = "backend_servers_ssh"
   description     = "Host set for backend servers"
   host_catalog_id = boundary_host_catalog_static.backend_servers.id
-  host_ids        = [for host in boundary_host.backend_servers : host.id]
+  host_ids        = [for host in boundary_host_static.backend_servers : host.id]
 }
 
 
@@ -55,7 +55,7 @@ resource "boundary_target" "nomad" {
   # worker_filter = "demostack in /tags/type"
 
   host_source_ids = [
-    boundary_host_set.backend_servers_ssh.id
+    boundary_host_set_static.backend_servers_ssh.id
   ]
 }
 
@@ -69,7 +69,7 @@ resource "boundary_target" "consul" {
   # worker_filter = "demostack in /tags/type"
 
   host_source_ids = [
-    boundary_host_set.backend_servers_ssh.id
+    boundary_host_set_static.backend_servers_ssh.id
   ]
 }
 
@@ -83,7 +83,7 @@ resource "boundary_target" "vault" {
   # worker_filter = "demostack in /tags/type"
 
   host_source_ids  = [
-    boundary_host_set.backend_servers_ssh.id
+    boundary_host_set_static.backend_servers_ssh.id
   ]
 }
 
@@ -97,7 +97,7 @@ resource "boundary_target" "backend_servers_ssh" {
   session_connection_limit = -1
   # worker_filter = "demostack in /tags/type"
   host_source_ids = [
-    boundary_host_set.backend_servers_ssh.id
+    boundary_host_set_static.backend_servers_ssh.id
   ]
   # brokered_credential_source_ids   = [
   #  boundary_credential_library_vault.ssh.id

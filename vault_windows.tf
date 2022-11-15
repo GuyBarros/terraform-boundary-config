@@ -22,8 +22,8 @@ resource "vault_kv_secret_v2" "windows" {
   delete_all_versions        = true
   data_json                  = jsonencode(
   {
-    Username       = "${var.windows_username}",
-    Password       = rsadecrypt(data.aws_instance.windows.password_data, file("/Users/guybarros/.ssh/id_rsa"))
+    username       = "${var.windows_username}",
+    password       = rsadecrypt(data.aws_instance.windows.password_data, file("/Users/guybarros/.ssh/id_rsa"))
   }
   )
 }

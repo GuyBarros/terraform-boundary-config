@@ -9,7 +9,7 @@ resource "boundary_target" "gen_test" {
   # worker_filter = "demostack in /tags/type"
 
   host_source_ids = [
-    boundary_host_set.backend_servers_ssh.id
+    boundary_host_set_static.backend_servers_ssh.id
   ]
    brokered_credential_source_ids = [
     boundary_credential_library_vault.gen.id
