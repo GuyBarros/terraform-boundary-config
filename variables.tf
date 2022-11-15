@@ -22,18 +22,6 @@ variable "password" {
 # Vault Dynamic DB Cred
 
 //PostgresSQL
-variable "postgres_hostname" {
-  description = "the hostname of the MySQL Database we will configure in Vault"
-}
-variable "postgres_port" {
-  description = "the port of the MySQL Database we will configure in Vault"
-}
-variable "postgres_name" {
-  description = "the Name of the MySQL Database we will configure in Vault"
-}
-variable "postgres_username" {
-  description = "the admin username of the MySQL Database we will configure in Vault"
-}
 variable "postgres_password" {
   description = "the password for admin username of the MySQL Database we will configure in Vault(this will be rotated after config)"
 }
