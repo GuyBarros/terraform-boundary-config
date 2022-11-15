@@ -103,7 +103,7 @@ resource "boundary_target" "backend_servers_ssh" {
   #  boundary_credential_library_vault.ssh.id
   # ]
 
-  worker_filter = "demostack in /tags/type"
+  # worker_filter = "demostack in /tags/type"
 
 }
 
