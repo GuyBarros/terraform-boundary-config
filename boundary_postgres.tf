@@ -44,7 +44,7 @@ resource "boundary_target" "postgres" {
     boundary_host_set_static.postgres_set.id
   ]
 
-   injected_application_credential_source_ids   = [
+   brokered_credential_source_ids   = [
     boundary_credential_library_vault.postgres.id
   ]
 }

@@ -18,7 +18,7 @@ module "config" {
   auth_method_id = var.config_auth_method_id
   boundary_address = var.config_boundary_address
   password = var.config_password
-  postgres_password = "rootpassword"
+  postgres_password = "YourPwdShouldBeLongAndSecure!"
   sshca_hostname = "workers-0.guystack.original.aws.hashidemos.io"
   username = var.config_username
   vault_address = var.config_vault_address
