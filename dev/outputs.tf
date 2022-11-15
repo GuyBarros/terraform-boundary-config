@@ -20,6 +20,9 @@ boundary connect -target-id=${module.config.consul_target}
 boundary connect -target-id=${module.config.vault_target}
 # Nomad
 boundary connect -target-id=${module.config.nomad_target}
+# Postgres
+boundary connect -target-id=${module.config.postgres_target}
+
 
 # SSH
 boundary connect ssh -target-id=${module.config.ssh_target} -username ubuntu

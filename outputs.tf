@@ -18,6 +18,10 @@ output "nomad_target" {
  value = boundary_target.nomad.id
 }
 
+output "postgres_target" {
+ value = boundary_target.postgres.id
+}
+
 
 output "ssh_target" {
  value = boundary_target.backend_servers_ssh.id
