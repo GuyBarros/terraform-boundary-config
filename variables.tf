@@ -3,17 +3,17 @@ variable "boundary_address" {
   default     = ""
 }
 
-variable "auth_method_id" {
+variable "boundary_auth_method_id" {
   description = "Boundary Auth Method"
   default     = ""
 }
 
-variable "username" {
+variable "boundary_username" {
   description = "Boundary Username"
   default     = "admin"
 }
 
-variable "password" {
+variable "boundary_password" {
   description = "Boundary Password"
   default     = ""
 }
@@ -58,4 +58,12 @@ variable "application_name" {
  variable "windows_username" {
   description = "the HCP Vault namespace we will use for mounting the database secret engine"
   default = "Administrator"
+}
+
+ variable "path_to_private_key" {
+  description = "path to the private key used on your Windows EC2 host"
+}
+
+variable "path_to_public_key" {
+  description = "path to the private key used on your Windows EC2 host"
 }

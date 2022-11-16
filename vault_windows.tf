@@ -39,8 +39,8 @@ resource "vault_kv_secret_v2" "ssh" {
   data_json                  = jsonencode(
   {
     username       = "ubuntu",
-    public_key       = file("/Users/guybarros/.ssh/id_rsa.pub")
-    private_key      = file("/Users/guybarros/.ssh/id_rsa")
+    public_key       = file(var.path_to_public_key)
+    private_key      = file(var.path_to_private_key)
   }
   )
 }
