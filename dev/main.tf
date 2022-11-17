@@ -1,28 +1,32 @@
 //--------------------------------------------------------------------
 // Variables
-variable "config_auth_method_id" {}
+variable "config_boundary_auth_method_id" {}
 variable "config_boundary_address" {}
-variable "config_password" {}
-variable "config_username" {}
+variable "config_boundary_password" {}
+variable "config_boundary_username" {}
 variable "config_vault_address" {}
 variable "config_vault_namespace" {}
 variable "config_vault_token" {}
+variable "config_path_to_private_key" {}
+variable "config_path_to_public_key" {}
 
 //--------------------------------------------------------------------
 // Modules
 module "config" {
-#  source  = "app.terraform.io/emea-se-playground-2019/config/boundary"
- source = "github.com/GuyBarros/terraform-boundary-config"
+  source  = "app.terraform.io/emea-se-playground-2019/config/boundary"
+# source = "github.com/GuyBarros/terraform-boundary-config"
 
   application_name = "guystack"
-  auth_method_id = var.config_auth_method_id
+  boundary_auth_method_id = var.config_boundary_auth_method_id
   boundary_address = var.config_boundary_address
-  password = var.config_password
+  boundary_password = var.config_boundary_password
+  boundary_username = var.config_username
   postgres_password = "YourPwdShouldBeLongAndSecure!"
   sshca_hostname = "workers-0.guystack.original.aws.hashidemos.io"
-  username = var.config_username
   vault_address = var.config_vault_address
   vault_namespace = var.config_vault_namespace
   vault_token = var.config_vault_token
   windows_port = 3389
+  path_to_private_key = var.config_path_to_private_key
+  path_to_public_key = var.config_path_to_public_key
 }

@@ -1,8 +1,8 @@
 provider "boundary" {
   addr                            = var.boundary_address
-  auth_method_id                  = var.auth_method_id
-  password_auth_method_login_name = var.username
-  password_auth_method_password   = var.password
+  auth_method_id                  = var.boundary_auth_method_id
+  password_auth_method_login_name = var.boundary_username
+  password_auth_method_password   = var.boundary_password
 }
 
 
