@@ -3,7 +3,7 @@ output "boundary_address" {
 }
 
 output "boundary_auth_string" {
- value = "boundary authenticate password -auth-method-id=${var.auth_method_id} -login-name=${var.username} -password=${var.password}"
+ value = "boundary authenticate password -auth-method-id=${var.auth_method_id} -login-name=${var.boundary_username} -password=${var.boundary_password}"
 }
 
 output "consul_target" {
