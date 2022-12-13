@@ -76,6 +76,3 @@ resource "vault_pki_secret_backend_role" "leaf" {
 }
 
 
-output "leaf" {
-  value = "genertate cert with `vault write pki_int/issue/leaf-cert common_name=demo.example.io`"
-}
