@@ -13,8 +13,8 @@ variable "config_path_to_public_key" {}
 //--------------------------------------------------------------------
 // Modules
 module "config" {
-  source  = "app.terraform.io/emea-se-playground-2019/config/boundary"
-# source = "github.com/GuyBarros/terraform-boundary-config"
+#  source  = "app.terraform.io/emea-se-playground-2019/config/boundary"
+ source = "github.com/GuyBarros/terraform-boundary-config"
 
   application_name = "guystack"
   boundary_auth_method_id = var.config_boundary_auth_method_id

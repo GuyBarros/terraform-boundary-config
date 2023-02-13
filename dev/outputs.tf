@@ -21,7 +21,7 @@ boundary connect -target-id=${module.config.vault_target}
 # Nomad
 boundary connect -target-id=${module.config.nomad_target}
 # Postgres
-boundary connect -target-id=${module.config.postgres_target}
+boundary connect postgres -target-id=${module.config.postgres_target}  -dbname postgres
 
 
 # SSH
