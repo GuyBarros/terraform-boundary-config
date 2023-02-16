@@ -7,12 +7,13 @@ resource "vault_token" "boundary" {
   display_name = "boundary cred store"
   renewable = true
   period = "72h"
-
+  
 }
 
 resource "vault_policy" "boundary_policy" {
   provider = vault.app
   name = "dev-team"
+  
 
   policy = <<EOT
 path "*" {

@@ -18,7 +18,8 @@ resource "boundary_scope" "app_infra" {
   name                   = "${var.application_name}_infrastrcture"
   description            = "${var.application_name} project!"
   scope_id               = boundary_scope.app.id
-  auto_create_admin_role = false
+  auto_create_admin_role = true
+  auto_create_default_role = true
 }
 
 resource "boundary_host_catalog_static" "backend_servers" {
@@ -52,7 +53,7 @@ resource "boundary_target" "nomad" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "4646"
   session_connection_limit = -1
-  worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter = " \"demostack\" in \"/tags/type\" "
 
   host_source_ids = [
     boundary_host_set_static.backend_servers_ssh.id
@@ -66,7 +67,7 @@ resource "boundary_target" "consul" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "8500"
   session_connection_limit = -1
-  worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter = " \"demostack\" in \"/tags/type\" "
 
   host_source_ids = [
     boundary_host_set_static.backend_servers_ssh.id
@@ -80,7 +81,7 @@ resource "boundary_target" "vault" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "8200"
   session_connection_limit = -1
-  worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter = " \"demostack\" in \"/tags/type\" "
 
   host_source_ids  = [
     boundary_host_set_static.backend_servers_ssh.id
@@ -95,7 +96,7 @@ resource "boundary_target" "backend_servers_ssh" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "22"
   session_connection_limit = -1
-  worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter = " \"demostack\" in \"/tags/type\" "
   host_source_ids = [
     boundary_host_set_static.backend_servers_ssh.id
   ]

@@ -38,7 +38,7 @@ resource "boundary_target" "postgres" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = data.aws_db_instance.postgres.port
   session_connection_limit = -1
-  worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter = " \"demostack\" in \"/tags/type\" "
 
   host_source_ids = [
     boundary_host_set_static.postgres_set.id
