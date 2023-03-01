@@ -15,10 +15,10 @@ resource "boundary_scope" "app" {
 }
 
 resource "boundary_scope" "app_infra" {
-  name                   = "${var.application_name}_infrastrcture"
-  description            = "${var.application_name} project!"
-  scope_id               = boundary_scope.app.id
-  auto_create_admin_role = true
+  name                     = "${var.application_name}_infrastrcture"
+  description              = "${var.application_name} project!"
+  scope_id                 = boundary_scope.app.id
+  auto_create_admin_role   = true
   auto_create_default_role = true
 }
 
@@ -53,7 +53,7 @@ resource "boundary_target" "nomad" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "4646"
   session_connection_limit = -1
-  egress_worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter     = " \"demostack\" in \"/tags/type\" "
 
   host_source_ids = [
     boundary_host_set_static.backend_servers_ssh.id
@@ -67,7 +67,7 @@ resource "boundary_target" "consul" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "8500"
   session_connection_limit = -1
-  egress_worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter     = " \"demostack\" in \"/tags/type\" "
 
   host_source_ids = [
     boundary_host_set_static.backend_servers_ssh.id
@@ -81,9 +81,9 @@ resource "boundary_target" "vault" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "8200"
   session_connection_limit = -1
-  egress_worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter     = " \"demostack\" in \"/tags/type\" "
 
-  host_source_ids  = [
+  host_source_ids = [
     boundary_host_set_static.backend_servers_ssh.id
   ]
 }
@@ -96,7 +96,7 @@ resource "boundary_target" "backend_servers_ssh" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "22"
   session_connection_limit = -1
-  egress_worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter     = " \"demostack\" in \"/tags/type\" "
   host_source_ids = [
     boundary_host_set_static.backend_servers_ssh.id
   ]
@@ -108,14 +108,14 @@ resource "boundary_target" "backend_servers_ssh" {
 }
 
 resource "boundary_credential_store_vault" "app_vault" {
-  name        = "app_Vault"
+  name        = "appHCP_Vault"
   description = "app Vault Credential Store"
   # address     = "https://vault.service.consul:8200"
-address         = var.vault_address
-  token       = vault_token.boundary.client_token
+  address = var.vault_address
+  token   = vault_token.boundary.client_token
   # token       = var.vault_token
-  namespace   = "admin/${var.application_name}"
-  scope_id    = boundary_scope.app_infra.id
+  namespace = "admin/${var.application_name}"
+  scope_id  = boundary_scope.app_infra.id
 }
 
 resource "boundary_credential_library_vault" "ssh" {

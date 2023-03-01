@@ -1,19 +1,19 @@
 
 
 resource "vault_token" "boundary" {
-  provider = vault.app
-  no_parent = true
-  policies = [vault_policy.boundary_policy.name,"superadmin","admin-policy"]
+  provider     = vault.app
+  no_parent    = true
+  policies     = [vault_policy.boundary_policy.name, "superadmin", "admin-policy"]
   display_name = "boundary cred store"
-  renewable = true
-  period = "72h"
-  
+  renewable    = true
+  period       = "72h"
+
 }
 
 resource "vault_policy" "boundary_policy" {
   provider = vault.app
-  name = "dev-team"
-  
+  name     = "dev-team"
+
 
   policy = <<EOT
 path "*" {

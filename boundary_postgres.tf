@@ -3,6 +3,7 @@
 resource "boundary_credential_library_vault" "postgres" {
   name                = "postgres_creds"
   description         = "postgres dynamic creds"
+  credential_type     = "username_password"
   credential_store_id = boundary_credential_store_vault.app_vault.id
   path                = "postgres/creds/postgres-role" # change to Vault backend path
   http_method         = "GET"
@@ -38,13 +39,13 @@ resource "boundary_target" "postgres" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = data.aws_db_instance.postgres.port
   session_connection_limit = -1
-  egress_worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter     = " \"demostack\" in \"/tags/type\" "
 
   host_source_ids = [
     boundary_host_set_static.postgres_set.id
   ]
 
-   brokered_credential_source_ids   = [
+  brokered_credential_source_ids = [
     boundary_credential_library_vault.postgres.id
   ]
 }

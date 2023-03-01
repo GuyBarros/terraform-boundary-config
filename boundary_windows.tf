@@ -3,6 +3,7 @@
 resource "boundary_credential_library_vault" "windows" {
   name                = "windows_creds"
   description         = "windows dynamic creds"
+  credential_type     = "username_password"
   credential_store_id = boundary_credential_store_vault.app_vault.id
   path                = "boundary_creds/data/windows" # change to Vault backend path
   http_method         = "GET"
@@ -38,13 +39,13 @@ resource "boundary_target" "windows" {
   scope_id                 = boundary_scope.app_infra.id
   default_port             = var.windows_port
   session_connection_limit = -1
-   egress_worker_filter = " \"demostack\" in \"/tags/type\" "
+  egress_worker_filter     = " \"demostack\" in \"/tags/type\" "
 
   host_source_ids = [
     boundary_host_set_static.windows_set.id
   ]
 
-   brokered_credential_source_ids   = [
+  brokered_credential_source_ids = [
     boundary_credential_library_vault.windows.id
   ]
 }

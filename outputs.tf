@@ -1,30 +1,30 @@
 output "boundary_address" {
- value = var.boundary_address
+  value = var.boundary_address
 }
 
 output "boundary_auth_string" {
- value = "boundary authenticate password -auth-method-id=${var.boundary_auth_method_id} -login-name=${var.boundary_username} -password=${var.boundary_password}"
+  value = "boundary authenticate password -auth-method-id=${var.boundary_auth_method_id} -login-name=${var.boundary_username} -password=${var.boundary_password}"
 }
 
 output "consul_target" {
- value = boundary_target.consul.id
+  value = boundary_target.consul.id
 }
 
 output "vault_target" {
- value = boundary_target.vault.id
+  value = boundary_target.vault.id
 }
 
 output "nomad_target" {
- value = boundary_target.nomad.id
+  value = boundary_target.nomad.id
 }
 
 output "postgres_target" {
- value = boundary_target.postgres.id
+  value = boundary_target.postgres.id
 }
 
 
 output "ssh_target" {
- value = boundary_target.backend_servers_ssh.id
+  value = boundary_target.backend_servers_ssh.id
 }
 
 # output "found_ec2_instances" {

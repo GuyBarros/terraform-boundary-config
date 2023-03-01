@@ -70,9 +70,9 @@ resource "vault_pki_secret_backend_role" "leaf" {
   server_flag        = true #
   client_flag        = true #
 
-  key_usage = ["DigitalSignature", "KeyAgreement", "KeyEncipherment","KeyUsageCertSign"]
-  max_ttl = "730h" # ~1 month
-  ttl     = "730h"
+  key_usage = ["DigitalSignature", "KeyAgreement", "KeyEncipherment", "KeyUsageCertSign"]
+  max_ttl   = "730h" # ~1 month
+  ttl       = "730h"
 }
 
 
