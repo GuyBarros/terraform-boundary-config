@@ -1,0 +1,16 @@
+
+data "aws_iam_access_key" "boundary_dynamic_host_catalog" {
+  user_name = "${var.namespace}-bdhc"
+}
+
+resource "boundary_host_catalog_plugin" "aws_ec2" {
+  name            = "AWS Sandbox"
+  description     = "Host catalog in AWS Sandbox"
+  scope_id        = boundary_scope.project.id
+  plugin_name     = "aws"
+  attributes_json = jsonencode({ "region" = data.aws_region.current.name })
+  secrets_json = jsonencode({
+    "access_key_id"     = data.aws_iam_access_key.boundary_dynamic_host_catalog.id
+    "secret_access_key" = data.aws_iam_access_key.boundary_dynamic_host_catalog.secret
+  })
+}

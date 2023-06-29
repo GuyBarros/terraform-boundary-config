@@ -38,3 +38,16 @@ output "ssh_target" {
 # output "found_windows_instance_password" {
 #  value = rsadecrypt(data.aws_instance.windows.password_data, file("/Users/guybarros/.ssh/id_rsa"))
 # }
+
+# Nomad
+output "zz_boundary_connect_nomad" {
+  value = "boundary connect -exec chrome -target-id=${boundary_target.nomad.id} -- {{boundary.host}} {{boundary.port}}"
+}
+# Postgres
+output "zz_boundary_connect_postgres" {
+  value = "boundary connect postgres -target-id ${boundary_target.postgres.id}  -dbname postgres"
+}
+# SSh
+output "zz_boundary_connect_ssh" {
+  value = "boundary connect ssh  -target-id  ${boundary_target.backend_servers_ssh.id} --username ubuntu"
+}

@@ -90,7 +90,7 @@ resource "boundary_target" "vault" {
 
 # create target for accessing backend servers on port :22
 resource "boundary_target" "backend_servers_ssh" {
-  type                     = "tcp"
+  type                     = "ssh"
   name                     = "Backend servers"
   description              = "Backend SSH target"
   scope_id                 = boundary_scope.app_infra.id

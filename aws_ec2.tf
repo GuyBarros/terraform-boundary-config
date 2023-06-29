@@ -6,28 +6,29 @@ provider "aws" {
 
 data "aws_instances" "servers" {
 
+
   filter {
     name   = "instance-state-name"
     values = ["running"]
   }
 
   instance_tags = {
-    owner = "guybarros"
-    #function = "server"
+   # owner = var.owner_tag
+    Function = "worker"
   }
 
 }
 
 data "aws_instance" "windows" {
 
-  filter {
-    name   = "instance-state-name"
-    values = ["running"]
-  }
+    filter {
+      name   = "instance-state-name"
+      values = ["running"]
+    }
 
   instance_tags = {
-    owner    = "guybarros"
     function = "Windows"
+     #owner = var.owner_tag
   }
 
   get_password_data = true

@@ -67,3 +67,9 @@ variable "path_to_private_key" {
 variable "path_to_public_key" {
   description = "path to the private key used on your Windows EC2 host"
 }
+
+
+variable "owner_tag"{
+  description = "Owner in the AWS tags to find resources in the account"
+  default = "guybarros"
+}
