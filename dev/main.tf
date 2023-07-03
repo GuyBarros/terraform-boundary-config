@@ -9,6 +9,7 @@ variable "config_vault_namespace" {}
 variable "config_vault_token" {}
 variable "config_path_to_private_key" {}
 variable "config_path_to_public_key" {}
+variable "config_application_name" {}
 
 //--------------------------------------------------------------------
 // Modules
@@ -16,7 +17,7 @@ module "config" {
 #  source  = "app.terraform.io/emea-se-playground-2019/config/boundary"
  source = "github.com/GuyBarros/terraform-boundary-config"
 
-  application_name = "guystack"
+  application_name = var.config_application_name
   boundary_auth_method_id = var.config_boundary_auth_method_id
   boundary_address = var.config_boundary_address
   boundary_password = var.config_boundary_password

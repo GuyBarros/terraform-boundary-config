@@ -14,7 +14,7 @@ resource "boundary_target" "gen_test" {
   injected_application_credential_source_ids = [
     boundary_credential_library_vault_ssh_certificate.vault_ssh_cert.id
   ]
-  
+
 }
 
 # resource "boundary_credential_library_vault" "gen" {
@@ -37,5 +37,5 @@ resource "boundary_credential_library_vault_ssh_certificate" "vault_ssh_cert" {
   description         = "Vault SSH Cert Library"
   credential_store_id = boundary_credential_store_vault.app_vault.id
   path                = "ssh-client-signer/sign/boundary-client" # change to correct Vault endpoint and role
-  username            = "ubuntu"                               # change to valid username
+  username            = "ubuntu"                                 # change to valid username
 }

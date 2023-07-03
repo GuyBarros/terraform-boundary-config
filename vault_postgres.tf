@@ -9,7 +9,7 @@ resource "vault_database_secret_backend_connection" "postgres-con" {
   name          = "postgres-con"
   allowed_roles = ["postgres-role"]
   postgresql {
-    connection_url       = "postgres://${data.aws_db_instance.postgres.master_username}:${var.postgres_password}@${data.aws_db_instance.postgres.endpoint}/${data.aws_db_instance.postgres.db_name}"#?sslmode=disable"
+    connection_url       = "postgres://${data.aws_db_instance.postgres.master_username}:${var.postgres_password}@${data.aws_db_instance.postgres.endpoint}/${data.aws_db_instance.postgres.db_name}" #?sslmode=disable"
     max_open_connections = -1
   }
 }

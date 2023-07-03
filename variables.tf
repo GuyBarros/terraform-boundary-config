@@ -69,7 +69,24 @@ variable "path_to_public_key" {
 }
 
 
-variable "owner_tag"{
+variable "owner_tag" {
   description = "Owner in the AWS tags to find resources in the account"
-  default = "guybarros"
+  default     = "guybarros"
 }
+
+
+variable "nomad_addr" {
+  description = "nomad address to run the vault ssh config job"
+  default     = "https://nomad.guylabstack.guy.aws.sbx.hashicorpdemo.com:4646"
+}
+
+variable "nomad_token" {
+  description = "nomad acl secret id  to run the vault ssh config job"
+  sensitive   = true
+}
+
+variable "boundary_ingress_worker_count" {
+  description = "count of ingress workers do deploy on nomad"
+  default     = 3
+}
+

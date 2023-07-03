@@ -13,7 +13,7 @@ data "aws_instances" "servers" {
   }
 
   instance_tags = {
-   # owner = var.owner_tag
+    # owner = var.owner_tag
     Function = "worker"
   }
 
@@ -21,14 +21,14 @@ data "aws_instances" "servers" {
 
 data "aws_instance" "windows" {
 
-    filter {
-      name   = "instance-state-name"
-      values = ["running"]
-    }
+  filter {
+    name   = "instance-state-name"
+    values = ["running"]
+  }
 
   instance_tags = {
     function = "Windows"
-     #owner = var.owner_tag
+    #owner = var.owner_tag
   }
 
   get_password_data = true

@@ -1,20 +1,20 @@
 resource "vault_mount" "ssh_mount" {
-    provider      = vault.app
+  provider    = vault.app
   path        = "ssh-client-signer"
   type        = "ssh"
   description = "SSH Mount"
 }
 
 resource "vault_ssh_secret_backend_ca" "ssh_backend" {
-    provider      = vault.app
-  backend              = vault_mount.ssh_mount.path
+  provider    = vault.app
+  backend     = vault_mount.ssh_mount.path
   public_key  = file(var.path_to_public_key)
-      private_key = file(var.path_to_private_key)
-  
+  private_key = file(var.path_to_private_key)
+
 }
 
 resource "vault_ssh_secret_backend_role" "ssh_role" {
-    provider      = vault.app
+  provider                = vault.app
   name                    = "boundary-client"
   backend                 = vault_mount.ssh_mount.path
   key_type                = "ca"
