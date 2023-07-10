@@ -15,6 +15,7 @@ data "aws_instances" "servers" {
   instance_tags = {
     # owner = var.owner_tag
     Function = "worker"
+    Purpose = var.application_name
   }
 
 }
@@ -27,7 +28,8 @@ data "aws_instance" "windows" {
   }
 
   instance_tags = {
-    function = "Windows"
+    Function = "Windows"
+    Purpose = var.application_name
     #owner = var.owner_tag
   }
 

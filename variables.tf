@@ -27,9 +27,7 @@ variable "postgres_password" {
   description = "the password for admin username of the MySQL Database we will configure in Vault(this will be rotated after config)"
 }
 
-variable "sshca_hostname" {
-  description = "the FQDN for the SSH CA target"
-}
+
 
 variable "windows_port" {
   description = "the port of the windows VM we will RDP into"
@@ -75,7 +73,7 @@ variable "owner_tag" {
 }
 
 
-variable "nomad_addr" {
+variable "nomad_address" {
   description = "nomad address to run the vault ssh config job"
   default     = "https://nomad.guylabstack.guy.aws.sbx.hashicorpdemo.com:4646"
 }

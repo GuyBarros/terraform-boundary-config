@@ -1,7 +1,7 @@
 
 resource "boundary_target" "gen_test" {
   type                     = "ssh"
-  name                     = "gen_test"
+  name                     = "gen_test_ssh_injected"
   description              = "gen_test"
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "22"

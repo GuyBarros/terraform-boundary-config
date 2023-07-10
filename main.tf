@@ -91,8 +91,8 @@ resource "boundary_target" "vault" {
 # create target for accessing backend servers on port :22
 resource "boundary_target" "backend_servers_ssh" {
   type                     = "ssh"
-  name                     = "Backend servers"
-  description              = "Backend SSH target"
+  name                     = "Nomad Workers SSH Injected creds"
+  description              = "Nomad Workers SSH target"
   scope_id                 = boundary_scope.app_infra.id
   default_port             = "22"
   session_connection_limit = -1
@@ -100,10 +100,9 @@ resource "boundary_target" "backend_servers_ssh" {
   host_source_ids = [
     boundary_host_set_static.backend_servers_ssh.id
   ]
-  # brokered_credential_source_ids   = [
-  #  boundary_credential_library_vault.ssh.id
-  # ]
-
+  injected_application_credential_source_ids = [
+    boundary_credential_library_vault_ssh_certificate.vault_ssh_cert.id
+  ]
 
 }
 

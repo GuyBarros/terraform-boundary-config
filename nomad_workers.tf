@@ -45,7 +45,7 @@ variable "hcp_boundary_cluster_id"{
 }
 
 
-job "boundary-ingress-worker=${count.index}" {
+job "boundary-ingress-worker-${count.index}" {
  region = "global"
   datacenters = ["eu-west-2a","eu-west-2b","eu-west-2c","eu-west-2","dc1"]
   type = "service"
@@ -140,9 +140,9 @@ job "boundary-ingress-worker=${count.index}" {
         args = ["server", "-config=tmp/boundary.d/pki-worker.hcl"]
       }
       service {
-        name = "boundary-ingress-worker"
+        name = "$${NOMAD_JOB_NAME}"
         address = "$${attr.unique.platform.aws.public-ipv4}"
-        tags = ["boundary-ingress-worker","worker-$${NOMAD_ALLOC_INDEX}"]
+        tags = ["boundary-ingress-worker","worker-$${NOMAD_JOB_NAME}"]
         port = "worker"
 
         check {

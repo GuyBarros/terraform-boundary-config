@@ -1,5 +1,5 @@
 provider "nomad" {
-  address   = var.nomad_addr
+  address   = var.nomad_address
   secret_id = var.nomad_token
 }
 
