@@ -6,26 +6,26 @@ resource "boundary_worker" "controller_led" {
 }
 
 resource "nomad_job" "nomad_boundary_workers" {
-  count       = var.boundary_ingress_worker_count
+  count = var.boundary_ingress_worker_count
   hcl2 {
-    enabled  = true
+    enabled = true
     vars = {
       boundary_auth_token = boundary_worker.controller_led[count.index].controller_generated_activation_token
       #boundary_auth_token = boundary_worker.controller_led[0].controller_generated_activation_token
       boundary_ingress_worker_count = var.boundary_ingress_worker_count
-      hcp_boundary_cluster_id = substr(var.boundary_address, 8, 36)
+      hcp_boundary_cluster_id       = substr(var.boundary_address, 8, 36)
     }
   }
- jobspec = <<EOT
+  jobspec = <<EOT
 
 variable "boundary_version" {
   type = string
-  default = "0.13.0+ent"
+  default = "0.13.2+ent"
 }
 
 variable "boundary_checksum" {
   type = string
-  default = "f86d4520c279701c88a943a863779d2284514d38b2bfd36f218ab3464fadfa63"
+  default = "dda11361809ce2b99d49653af677d676b30b4599e2663174f8950cf346734be0"
 
 }
 
@@ -77,6 +77,12 @@ job "boundary-ingress-worker-${count.index}" {
           # checksum = "sha256:$${var.boundary_checksum}"
         }
       }
+
+      env {
+        AWS_ACCESS_KEY_ID     = aws_iam_access_key.boundary_session_recording.id
+    AWS_SECRET_ACCESS_KEY = aws_iam_access_key.boundary_session_recording.secret
+      }
+
       template {
         data        = <<EOF
         disable_mlock = true
@@ -93,6 +99,7 @@ job "boundary-ingress-worker-${count.index}" {
 
  worker {
   auth_storage_path = "tmp/boundary.d/"
+  recording_storage_path = "tmp/boundary.d/"
   # change this to the public ip address of the specific platform you are running or use "attr.unique.network.ip-address"
    public_addr = "{{ env "attr.unique.platform.aws.public-ipv4" }}"
 
@@ -103,7 +110,7 @@ job "boundary-ingress-worker-${count.index}" {
   }
    controller_generated_activation_token = "$${var.boundary_auth_token}"
  }
-
+ 
  events {
   audit_enabled       = true
   sysevents_enabled   = true

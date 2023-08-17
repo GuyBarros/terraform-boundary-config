@@ -52,6 +52,15 @@ output "zz_boundary_connect_ssh" {
   value = "boundary connect ssh  -target-id  ${boundary_target.backend_servers_ssh.id} --username ubuntu"
 }
 
- output "boundary_worker_tokens" {
+output "boundary_worker_tokens" {
   value = boundary_worker.controller_led.*.controller_generated_activation_token
- }
+}
+
+output "session_recording_user" {
+  value = aws_iam_access_key.boundary_session_recording.id
+}
+
+output "session_recording_password" {
+  value = aws_iam_access_key.boundary_session_recording.secret
+  sensitive = true
+}

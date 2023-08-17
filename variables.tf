@@ -88,3 +88,22 @@ variable "boundary_ingress_worker_count" {
   default     = 3
 }
 
+
+variable "disable_credential_rotation" {
+  type        = bool
+  description = "Bool to signal if Boundary should not rotate the IAM Access Credentials"
+  default     = false
+}
+
+
+variable "s3_bucket_name" {
+  type        = string
+  description = "Bucket that holds Session Recordings"
+  default     = "boundary_session_recording"
+}
+
+variable "region" {
+  type        = string
+  description = "AWS Region"
+  default     = "eu-west-2"
+}
