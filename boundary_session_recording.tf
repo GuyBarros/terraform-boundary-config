@@ -64,7 +64,7 @@ resource "aws_iam_access_key" "boundary_session_recording" {
 # AWS is eventually-consistent when creating IAM Users. Introduce a wait
 # before handing credentails off to boundary.
 resource "time_sleep" "boundary_session_recording_user_ready" {
-  create_duration = "10s"
+  create_duration = "1m"
 
   depends_on = [aws_iam_access_key.boundary_session_recording,nomad_job.nomad_boundary_workers]
 }
@@ -72,7 +72,7 @@ resource "time_sleep" "boundary_session_recording_user_ready" {
 # NOTE:  Be advised, at this time there is no way to delete a storage bucket with the provider or inside of Boundary GUI
 # The only way to delete the storage bucket is to delete the cluster at the moment.  As such, you could leverage the below
 # to provision a storage bucket with this demo, or you can manage this in your Boundary Cluster Configuration
-
+/*
 resource "boundary_storage_bucket" "doormat_example" {
   depends_on = [ nomad_job.nomad_boundary_workers,aws_iam_user.boundary_session_recording,time_sleep.boundary_session_recording_user_ready ]
   name            = "Demo BSR Bucket"
@@ -89,3 +89,4 @@ resource "boundary_storage_bucket" "doormat_example" {
   })
   worker_filter = " \"demostack\" in \"/tags/type\" "
 }
+*/

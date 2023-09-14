@@ -20,13 +20,14 @@ boundary connect -target-id=${module.config.consul_target}
 boundary connect -target-id=${module.config.vault_target}
 
 # Nomad
-boundary connect -exec chrome -target-id=${module.config.nomad_target} -- {{boundary.host}} {{boundary.port}}
+boundary connect -target-id=${module.config.nomad_target} 
+# boundary connect -exec chrome -target-id=${module.config.nomad_target} -- {{boundary.host}} {{boundary.port}}
 
 # Postgres
 boundary connect postgres -target-id ${module.config.postgres_target}  -dbname postgres
 
 # SSh
-boundary connect ssh  -target-id  ${module.config.ssh_target} --username ubuntu
+boundary connect ssh  -target-id  ${module.config.ssh_target} 
 
 EOF
 }

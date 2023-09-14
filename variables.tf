@@ -92,7 +92,7 @@ variable "boundary_ingress_worker_count" {
 variable "disable_credential_rotation" {
   type        = bool
   description = "Bool to signal if Boundary should not rotate the IAM Access Credentials"
-  default     = false
+  default     = true
 }
 
 
@@ -106,4 +106,21 @@ variable "region" {
   type        = string
   description = "AWS Region"
   default     = "eu-west-2"
+}
+
+variable "consul_datacenter" {
+  type        = string
+  description = "HCP Consul Datacenter Name"
+  default     = "eu-west-2"
+}
+
+variable "consul_address" {
+  type        = string
+  description = "HCP Consul Address"
+}
+
+variable "consul_token" {
+  type        = string
+  description = "HCP Consul Token"
+  sensitive = true
 }

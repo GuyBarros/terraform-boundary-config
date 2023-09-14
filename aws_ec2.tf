@@ -1,6 +1,6 @@
 # Configure the AWS Provider
 provider "aws" {
-  region = "eu-west-2"
+  region = var.region
 }
 
 
@@ -15,7 +15,7 @@ data "aws_instances" "servers" {
   instance_tags = {
     # owner = var.owner_tag
     Function = "worker"
-    Purpose = var.application_name
+    Purpose  = var.application_name
   }
 
 }
@@ -29,7 +29,7 @@ data "aws_instance" "windows" {
 
   instance_tags = {
     Function = "Windows"
-    Purpose = var.application_name
+    Purpose  = var.application_name
     #owner = var.owner_tag
   }
 

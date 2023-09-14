@@ -7,6 +7,8 @@ variable "config_boundary_username" {}
 variable "config_vault_address" {}
 variable "config_vault_namespace" {}
 variable "config_vault_token" {}
+variable "config_nomad_address" {}
+variable "config_nomad_token" {}
 variable "config_path_to_private_key" {}
 variable "config_path_to_public_key" {}
 variable "config_application_name" {}
@@ -23,10 +25,11 @@ module "config" {
   boundary_password = var.config_boundary_password
   boundary_username = var.config_boundary_username
   postgres_password = "YourPwdShouldBeLongAndSecure!"
-  sshca_hostname = "workers-0.guystack.original.aws.hashidemos.io"
   vault_address = var.config_vault_address
   vault_namespace = var.config_vault_namespace
   vault_token = var.config_vault_token
+  nomad_address = var.config_nomad_address
+  nomad_token = var.config_nomad_token
   windows_port = 3389
   path_to_private_key = var.config_path_to_private_key
   path_to_public_key = var.config_path_to_public_key
