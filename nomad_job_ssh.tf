@@ -35,9 +35,12 @@ job "boundary_vault_ssh_config" {
     template {
       data = <<EOH
 set -v
+
 export VAULT_ADDR=${var.vault_address}
 export VAULT_NAMESPACE=${trimsuffix(vault_namespace.app.id, "/")}
 export VAULT_TOKEN=${var.vault_token}
+
+vault version
 
 # Add the public key to all target host's SSH configuration
 vault read -field=public_key ${vault_mount.ssh_mount.path}/config/ca > /etc/ssh/trusted-user-ca-keys.pem
@@ -45,6 +48,8 @@ vault read -field=public_key ${vault_mount.ssh_mount.path}/config/ca > /etc/ssh/
 # Setting up /etc/ssh/sshd_config
 grep -qxF 'TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem' /etc/ssh/sshd_config || sudo echo 'TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem' >> /etc/ssh/sshd_config
 
+# This is what your sshd config looks like now:
+cat /etc/ssh/sshd_config
 
 # restarting SSHD
 sudo systemctl restart sshd

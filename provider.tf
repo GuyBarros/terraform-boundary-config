@@ -17,3 +17,19 @@ provider "vault" {
 resource "vault_namespace" "app" {
   path = var.application_name
 }
+
+terraform {
+  required_providers {
+    okta = {
+      source = "okta/okta"
+      version = "~> 4.4.2"
+    }
+  }
+}
+
+# Configure the Okta Provider
+provider "okta" {
+  org_name  = var.okta_org_name
+  base_url  = var.okta_base_url
+  api_token = var.okta_api_token
+}

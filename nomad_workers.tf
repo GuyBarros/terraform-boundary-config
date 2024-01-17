@@ -20,12 +20,12 @@ resource "nomad_job" "nomad_boundary_workers" {
 
 variable "boundary_version" {
   type = string
-  default = "0.13.2+ent"
+  default = "0.14.3+ent"
 }
 
 variable "boundary_checksum" {
   type = string
-  default = "dda11361809ce2b99d49653af677d676b30b4599e2663174f8950cf346734be0"
+  default = "b1364d334d56c4b3535ff192817a5a83c63348ec62e1fa3a63ddebe8f1967647"
 
 }
 

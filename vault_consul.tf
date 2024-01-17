@@ -8,7 +8,7 @@ resource "consul_acl_policy" "vault-se-policy" {
   name        = "vault-se-policy"
   rules       = <<-RULE
 acl = "write"
-  
+
     namespace_prefix "sandbox" {
 
 acl = "write"
@@ -16,6 +16,17 @@ acl = "write"
 }
     RULE
 }
+
+resource "consul_acl_policy" "test-policy" {
+  name        = "test-policy"
+  namespace   = consul_namespace.sandbox.name
+  rules       = <<-RULE
+acl = "write"
+
+
+    RULE
+}
+
 
 
 resource "consul_namespace" "sandbox" {
@@ -33,6 +44,8 @@ resource "consul_acl_token" "vault_token" {
   policies = [consul_acl_policy.vault-se-policy.name]
   local = true
 }
+
+
 
 data "consul_acl_token_secret_id" "token" {
   accessor_id = consul_acl_token.vault_token.id
@@ -52,6 +65,6 @@ resource "vault_consul_secret_backend_role" "example" {
   consul_namespace = consul_namespace.sandbox.name
 
   consul_policies = [
-    "example-policy",
+    consul_acl_policy.test-policy.name 
   ]
 }

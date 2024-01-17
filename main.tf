@@ -103,7 +103,8 @@ resource "boundary_target" "backend_servers_ssh" {
   injected_application_credential_source_ids = [
     boundary_credential_library_vault_ssh_certificate.vault_ssh_cert.id
   ]
-
+ enable_session_recording = true
+  storage_bucket_id        = boundary_storage_bucket.doormat_example.id
 }
 
 resource "boundary_credential_store_vault" "app_vault" {
